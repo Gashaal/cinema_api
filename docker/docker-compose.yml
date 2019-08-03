@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  db:
+    image: postgres
+    env_file:
+      - ../.env_docker
+  web:
+    build:
+      context: ../
+      dockerfile: docker/app
+    env_file:
+      - ../.env_docker
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
